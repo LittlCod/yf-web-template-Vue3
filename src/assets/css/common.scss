@@ -1,0 +1,205 @@
+/*
+    这里放平时常用的样式
+*/
+
+// 常用的距离列表
+$number-list: (
+    '5':5px,
+    '10':10px,
+    '15':15px,
+    '20':20px
+);
+
+.pointer{
+    cursor: pointer;
+}
+
+/* 
+    多行文字超出省略号，默认1到5行，需要的话再加
+    使用：class='.overflow-omit数字'
+*/
+// 单行
+.overflow-omit-1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+// 多行
+@for $i from 2 through 5 {
+    .overflow-omit-#{$i} {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: $i;
+        -webkit-box-orient: vertical;
+    }
+}
+
+
+// 常用margin,padding值，默认5/10/15/20，需要的话再加
+@each $margin-padding-key,
+$margin-padding-value in $number-list {
+    .m-#{$margin-padding-key} {margin: $margin-padding-value;}
+    .mt-#{$margin-padding-key} {margin-top: $margin-padding-value;}
+    .ml-#{$margin-padding-key} {margin-left: $margin-padding-value;}
+    .mr-#{$margin-padding-key} {margin-right: $margin-padding-value;}
+    .mb-#{$margin-padding-key} {margin-bottom: $margin-padding-value;}
+    
+    .p-#{$margin-padding-key} {padding: $margin-padding-value;}
+    .pt-#{$margin-padding-key} {padding-top: $margin-padding-value;}
+    .pl-#{$margin-padding-key} {padding-left: $margin-padding-value;}
+    .pr-#{$margin-padding-key} {padding-right: $margin-padding-value;}
+    .pb-#{$margin-padding-key} {padding-bottom: $margin-padding-value;}
+}
+
+
+// 常用flex值
+// 使用：class="flex jc-sb ai-c"
+.flex { display: flex; }
+// 开启flex布局
+.flex-c { display: flex;flex-direction: column; }
+
+// 开启flex布局并且主轴为纵向
+$flex-jc: (
+    's': start,
+    'e': end,
+    'c': center,
+    'sb': space-between,
+    'sa': space-around,
+    'se': space-evenly,
+);
+$flex-ai: (
+    's': start,
+    'e': end,
+    'c': center
+);
+
+// justify-content
+@each $flexKey,
+$flexValue in $flex-jc {
+    .jc-#{$flexKey} {
+        justify-content: $flexValue;
+    }
+}
+
+// align-items
+@each $flexKey,
+$flexValue in $flex-ai {
+    .ai-#{$flexKey} {
+        align-items: $flexValue;
+    }
+}
+
+
+// 常用grid值
+// 用法：class="grid r-3 c-3 g-10 pi-c" 元素间距为10的九宫格且内容垂直水平居中
+// 元素用法：class="cspan-3" 占用3列
+.grid {
+    display: grid;
+}
+
+// 开启grid布局
+.grid-c {
+    display: grid;
+    grid-auto-flow: column;
+}
+
+// 开启grid布局并且纵向排列
+.grid-d {
+    display: grid;
+    grid-auto-flow: row dense;
+}
+
+// 开启grid布局并且开启自动填充
+.grid-cd {
+    display: grid;
+    grid-auto-flow: column dense;
+}
+
+// 开启grid布局并且纵向排列和开启自动填充
+
+// 平分，默认2到5份
+@for $i from 2 through 6 {
+
+    // 平分2到5行
+    .r-#{$i} {
+        grid-template-rows: repeat($i, 1fr);
+    }
+
+    // 平分2到5列
+    .c-#{$i} {
+        grid-template-columns: repeat($i, 1fr);
+    }
+}
+
+// 常用网格间距，5/10/15/20
+@each $gap-key,
+$gap-value in $number-list {
+    .gap-#{$gap-key} {
+        gap: $gap-value;
+    }
+
+    .rgap-#{$gap-key} {
+        row-gap: $gap-value;
+    }
+
+    // 行间距
+    .cgap-#{$gap-key} {
+        column-gap: $gap-value;
+    }
+
+    // 列间距
+}
+
+// justify-content和align-items属性可以使用flex的同名属性，不重复写了
+$grid-ac: (
+    's': start,
+    'e': end,
+    'c': center,
+    'sb': space-between,
+    'sa': space-around,
+    'se': space-evenly,
+);
+$grid-ji: (
+    's': start,
+    'e': end,
+    'c': center
+);
+
+// align-content place-content
+@each $gridKey,
+$gridValue in $grid-ac {
+    .ac-#{$gridKey} {
+        align-content: $gridValue;
+    }
+    .pc-#{$gridKey} {
+        place-content: $gridValue;
+    }
+}
+
+// justify-items place-items
+@each $gridKey,
+$gridValue in $grid-ji {
+    .ji-#{$gridKey} {
+        justify-items: $gridValue;
+    }
+    .pi-#{$gridKey} {
+        place-items: $gridValue;
+    }
+}
+
+
+// 元素占用格子数量，默认2到5格
+@for $i from 2 through 5 {
+
+    // 占用2到5行
+    .rspan-#{$i} {
+        grid-row-start: span $i;
+    }
+
+    // 占用2到5列
+    .cspan-#{$i} {
+        grid-column-start: span $i;
+    }
+}
