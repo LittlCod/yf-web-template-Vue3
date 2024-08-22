@@ -6,7 +6,6 @@ import { ElLoading } from 'element-plus'; // 加载动画
 import pinia from '../store';
 import { useMain } from "@/store/modules/main.js";
 import { useUser } from "@/store/modules/user.js";
-import { getMenu } from "@/api/login.js";
 import { handleMenu } from '@/utils/menu.js';
 
 const whiteList = ['/login'];
@@ -17,12 +16,6 @@ const router = createRouter({
     // 路由地址
     routes: routes
 });
-// router.addRoute({
-//     path: '/business/operation/salessummary',
-//     name: 'business11',
-//     component: () => import('@/views/LayoutView.vue'),
-// });
-
 
 let loading = null;
 

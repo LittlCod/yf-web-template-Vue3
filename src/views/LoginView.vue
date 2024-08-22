@@ -1,7 +1,6 @@
 <template>
-    <div class="layout">
-        123
-        <router-view></router-view>
+    <div class="login">
+        登录
     </div>
 </template>
         

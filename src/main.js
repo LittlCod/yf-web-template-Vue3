@@ -10,9 +10,6 @@ import 'element-plus/dist/index.css';
 // 引入element-plus图标
 import * as ElementPlusIconsVue from '@element-plus/icons-vue';
 import print from 'vue3-print-nb';
-import 'vant/es/notify/style';
-import 'vant/lib/index.css';
-
 
 const app = createApp(App);
 app.use(router);

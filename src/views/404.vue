@@ -1,7 +1,6 @@
 <template>
-    <div class="layout">
-        123
-        <router-view></router-view>
+    <div class="404">
+        找不到页面
     </div>
 </template>
         
