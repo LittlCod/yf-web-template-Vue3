@@ -7,6 +7,7 @@ import pinia from '../store';
 import { useMain } from "@/store/modules/main.js";
 import { useUser } from "@/store/modules/user.js";
 import { handleMenu } from '@/utils/menu.js';
+import { getMenu } from "@/api/login.js";
 
 const whiteList = ['/login'];
 

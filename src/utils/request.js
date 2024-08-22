@@ -4,8 +4,8 @@ import { getToken, removeToken } from '@/utils/auth';
 
 // 创建axios实例
 const service = axios.create({
-    // json-serve的地址
-    baseURL: 'http://120.26.107.237:8000/jgranary',
+    // json的地址
+    baseURL: '/json_data',
     // baseURL: getIp()+'/groupman',// api的base_url
     timeout: 60000 // 请求超时时间
 });
