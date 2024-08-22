@@ -4,6 +4,7 @@ import { useUser } from '../store/modules/user.js';
 
 const TokenKey = 'loginToken';
 const TenantKey = 'userTenant';
+const PassWordKey = 'Password';
 
 export function getToken() {
   return Cookies.get(TokenKey);
@@ -30,3 +31,14 @@ export function removeTenant() {
   return Cookies.remove(TenantKey);
 }
 
+export function getPassword() {
+  return Cookies.get(PassWordKey);
+}
+
+export function setPassword(data) {
+  return Cookies.set(PassWordKey, data);
+}
+
+export function removePassword() {
+  return Cookies.remove(PassWordKey);
+}

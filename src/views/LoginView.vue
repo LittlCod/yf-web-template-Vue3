@@ -23,7 +23,7 @@
 </template>
 <script setup>
 import { ref, reactive, onMounted, onUnmounted, onBeforeUnmount, nextTick } from 'vue';
-import { setToken } from '@/utils/auth.js';
+import { setToken, getPassword, setPassword } from '@/utils/auth.js';
 import { useRouter } from 'vue-router';
 import { useUser } from '@/store/modules/user.js';
 import { ElMessage, ElMessageBox } from 'element-plus';
@@ -57,6 +57,13 @@ async function toLogin() {
                     userInfo.username = data.username;
                     // userInfo.menu = data.pageStr;
 
+                    // 保存密码
+                    if (loginData.savePassword) setPassword(JSON.stringify({
+                        username: loginData.username,
+                        password: loginData.password
+                    }));
+
+                    // 保存用户信息
                     user.initUser(userInfo);
                     setToken(tokenStr);
                     $router.push('/layout');
@@ -85,6 +92,18 @@ async function toLogin() {
         }
     });
 }
+
+onMounted(() => {
+    // 初始化登录信息
+    const passwordData = getPassword();
+    console.log(passwordData);
+    if (passwordData) {
+        const { username, password } = JSON.parse(passwordData);
+        loginData.username = username;
+        loginData.password = password;
+        loginData.savePassword = true;
+    }
+});
 </script>
 
 <style lang="scss">
