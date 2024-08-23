@@ -1,6 +1,5 @@
 <template>
     <div id="app" :class="themeClass">
-        <div class="them-title">11</div>
         <!-- 本地化，把element-plus语言换成中文 -->
         <el-config-provider :locale="locale">
             <router-view></router-view>

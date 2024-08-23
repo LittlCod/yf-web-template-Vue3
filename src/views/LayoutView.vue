@@ -2,13 +2,14 @@
 	<div class="layout">
 		<div class="common-layout">
 			<el-container>
-				<el-header class="header them-title">
+				<el-header class="header yf-title">
                     <div class="logo">
                         <img src="@/assets/vue.svg" alt="logo">模板项目页面
                     </div>
                     menu
-                    <el-button @click="mainStore.changeTheme('light')">light</el-button>
-                    <el-button @click="mainStore.changeTheme('dark')">dark</el-button>
+                    <el-button class="yf-btn-primary" @click="mainStore.changeTheme('light')">light</el-button>
+                    <button class="yf-btn-info">主要</button>
+                    <el-button class="yf-btn-primary" @click="mainStore.changeTheme('dark')">dark</el-button>
                 </el-header>
 				<el-container>
 					<el-aside width="200px">Aside</el-aside>

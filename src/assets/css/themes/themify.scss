@@ -1,28 +1,41 @@
 @import './themeVariable.scss';
 @import './themeMixin.scss';
 
+// 这个页面添加最终写在页面上的类
+
+// 使用@mixin创建一个新的分类，以button为例
+// 属性: themed('对应的变量名，如果变量名中有变量，用#{$value}区分');
+@mixin button($value: default){
+    background-color: themed('btn-#{$value}-background');
+    color: themed('btn-#{$value}-color');
+    &:hover{
+        background-color: themed('btn-#{$value}-background-hover');
+        color: themed('btn-#{$value}-color-hover');
+    }
+}
+
 // 全局类
 @include themify($themes){
-    .them-title{
+    /* 在这里添加各种类，可以使用两种方式添加 */
+    // 第一种是直接添加，属性: themed('对应的变量名')
+    .yf-title{
         width: 100%;
         height: 40px;
         background-color: themed('topmenu-background');
         color: themed('basic-textcolor');
     }
 
-    .them-btn-default{
+    // 第二种是使用mixin添加的分类，以便使用变量来添加属性
+    // @include 分类('对应的变量名')
+    .yf-btn{
         @include button;
     }
 
-    .them-btn-primary{
+    .yf-btn-primary{
         @include button('primary');
     }
 
-    .them-btn-info{
+    .yf-btn-info{
         @include button('info');
     }
 }
-
-// .them-title{
-//     font-size: 20px;
-// }

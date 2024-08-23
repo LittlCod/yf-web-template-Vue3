@@ -1,12 +1,25 @@
 @import './variable.scss';
+// 在这里添加不同主题下的样式
 
 $themes:(
     dark:(
         topmenu-background: $dark-topmenu-background,
-        basic-textcolor: $dark-topmenu-color
+        basic-textcolor: $dark-topmenu-color,
+        // 按钮
+        btn-primary-background: $light-primary-btn-bg,
+        btn-primary-color: $light-primary-btn-text,
+        btn-primary-background-hover:#409eff,
+        btn-primary-boder-hover: 1px solid #409eff,
+        btn-primary-color-hover: #FFFFFF,
     ),
     light:(
         topmenu-background: $light-topmenu-background,
-        basic-textcolor: $light-topmenu-color
+        basic-textcolor: $light-topmenu-color,
+        // 按钮
+        btn-primary-background: $dark-primary-btn-bg,
+        btn-primary-color: $dark-primary-btn-text,
+        btn-primary-background-hover: #f86065,
+        btn-primary-boder-hover: 1px solid #f86065,
+        btn-primary-color-hover: #FFFFFF,
     )
 )
