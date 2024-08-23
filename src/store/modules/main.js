@@ -4,6 +4,7 @@ import { defineStore } from 'pinia';
 export const useMain = defineStore('main', {
     state: () => {
         return {
+            theme: 'light',
             leftMenuCollapse: false,
             refresh: true
         }
@@ -11,6 +12,9 @@ export const useMain = defineStore('main', {
     getters: {
     },
     actions: {
+        changeTheme(val) {
+            this.theme = val;
+        },
         changeCollapse(val) {
             this.leftMenuCollapse = val;
         },

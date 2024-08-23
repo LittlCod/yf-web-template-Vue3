@@ -1,0 +1,12 @@
+@import './variable.scss';
+
+$themes:(
+    dark:(
+        topmenu-background: $dark-topmenu-background,
+        basic-textcolor: $dark-topmenu-color
+    ),
+    light:(
+        topmenu-background: $light-topmenu-background,
+        basic-textcolor: $light-topmenu-color
+    )
+)

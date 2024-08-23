@@ -1,0 +1,23 @@
+@import './themeVariable.scss';
+
+@mixin themify($themes) {
+    @each $theme-name, $map in $themes {
+        $myMap: $map !global;
+        .theme-#{$theme-name} {
+            @content
+        }
+    }
+}
+
+@mixin button($value: default){
+    background-color: themed('btn-#{$value}-background');
+    color: themed('btn-#{$value}-color');
+    &:hover{
+        background-color: themed('btn-#{$value}-background-hover');
+        color: themed('btn-#{$value}-color-hover');
+    }
+}
+
+@function themed($key){
+    @return map-get($myMap, $key);
+}

@@ -1,0 +1,28 @@
+@import './themeVariable.scss';
+@import './themeMixin.scss';
+
+// 全局类
+@include themify($themes){
+    .them-title{
+        width: 100%;
+        height: 40px;
+        background-color: themed('topmenu-background');
+        color: themed('basic-textcolor');
+    }
+
+    .them-btn-default{
+        @include button;
+    }
+
+    .them-btn-primary{
+        @include button('primary');
+    }
+
+    .them-btn-info{
+        @include button('info');
+    }
+}
+
+// .them-title{
+//     font-size: 20px;
+// }
