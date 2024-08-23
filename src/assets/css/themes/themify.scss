@@ -18,11 +18,18 @@
 @include themify($themes){
     /* 在这里添加各种类，可以使用两种方式添加 */
     // 第一种是直接添加，属性: themed('对应的变量名')
-    .yf-title{
-        width: 100%;
-        height: 40px;
+    .yf-topmenu-container{
         background-color: themed('topmenu-background');
         color: themed('basic-textcolor');
+        .logo{
+            color: themed('basic-textcolor');
+        }
+    }
+
+    .yf-topmenu{
+        li,.el-sub-menu__title{
+            color: themed('basic-textcolor') !important;
+        }
     }
 
     // 第二种是使用mixin添加的分类，以便使用变量来添加属性
