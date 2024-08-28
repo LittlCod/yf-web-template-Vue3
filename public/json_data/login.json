@@ -5,6 +5,7 @@
         "id": 1,
         "name": "管理员",
         "username": "root",
+        "role": "超级管理员",
         "accessToken": "test_token"
     }
 }

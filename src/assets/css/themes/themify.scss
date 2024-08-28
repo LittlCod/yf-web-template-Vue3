@@ -18,12 +18,19 @@
 @include themify($themes){
     /* 在这里添加各种类，可以使用两种方式添加 */
     // 第一种是直接添加，属性: themed('对应的变量名')
-    .yf-topmenu-container{
-        background-color: themed('topmenu-background');
+    .yf-bg-container{
+        background-color: themed('background') !important;
+    }
+
+    .yf-textcolor{
+        color: themed('basic-textcolor') !important;
+    }
+
+    .yf-card{
+        background-color: themed('background2');
+        border: 0;
         color: themed('basic-textcolor');
-        .logo{
-            color: themed('basic-textcolor');
-        }
+        box-shadow: themed('card-box-shadow');
     }
 
     .yf-topmenu{

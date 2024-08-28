@@ -8,6 +8,7 @@ export const useUser = defineStore('user', {
             username: '',
             name: '',
             id: null,
+            role: '',
             menu: []
         }
     },
@@ -17,10 +18,11 @@ export const useUser = defineStore('user', {
     // 函数
     actions: {
         initUser(userInfo){
-            const { username, name, id } = userInfo;
+            const { username, name, id, role } = userInfo;
             this.username = username;
             this.name = name;
             this.id = id;
+            this.role = role;
         },
         setMenu(menu){
             this.menu = menu;

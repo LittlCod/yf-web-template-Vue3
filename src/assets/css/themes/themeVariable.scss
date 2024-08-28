@@ -3,23 +3,33 @@
 
 $themes:(
     dark:(
-        topmenu-background: $dark-topmenu-background,
-        basic-textcolor: $dark-topmenu-color,
+        background: $black,
+        background2: $black2,
+        basic-textcolor: $white,
         // 按钮
-        btn-primary-background: $light-primary-btn-bg,
-        btn-primary-color: $light-primary-btn-text,
+        btn-primary-background: $black2,
+        btn-primary-color: $white,
         btn-primary-background-hover:#409eff,
         btn-primary-boder-hover: 1px solid #409eff,
         btn-primary-color-hover: #FFFFFF,
+        card-box-shadow: $dark-card-box-shadow,
+        // el-descriptions
+        el-descriptions-label: $white3,
+        el-descriptions-content: $white,
     ),
     light:(
-        topmenu-background: $light-topmenu-background,
-        basic-textcolor: $light-topmenu-color,
+        background: $white,
+        background2: $white2,
+        basic-textcolor: $black,
         // 按钮
-        btn-primary-background: $dark-primary-btn-bg,
-        btn-primary-color: $dark-primary-btn-text,
+        btn-primary-background: $white2,
+        btn-primary-color: $black,
         btn-primary-background-hover: #f86065,
         btn-primary-boder-hover: 1px solid #f86065,
         btn-primary-color-hover: #FFFFFF,
+        card-box-shadow: $light-card-box-shadow,
+        // el-descriptions
+        el-descriptions-label: $black3,
+        el-descriptions-content: $black,
     )
 )

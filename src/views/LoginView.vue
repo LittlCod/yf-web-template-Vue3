@@ -4,8 +4,8 @@
             <div class="title">用户登录</div>
             <el-form ref="loginform" class="login-form grid c-2 ai-c pc-c" :rules="rules" :model="loginData">
                 <el-form-item class="cspan-2" prop="username">
-                    <el-input v-model="loginData.username" type="text" prefix-icon="User" placeholder="输入用户名" size="large"
-                        @keydown.enter="toLogin"></el-input>
+                    <el-input v-model="loginData.username" type="text" prefix-icon="User" placeholder="输入用户名"
+                        size="large" @keydown.enter="toLogin"></el-input>
                 </el-form-item>
                 <el-form-item class="cspan-2" prop="password">
                     <el-input v-model="loginData.password" type="password" prefix-icon="Lock" @keydown.enter="toLogin"
@@ -55,6 +55,7 @@ async function toLogin() {
                     userInfo.id = data.id;
                     userInfo.name = data.name;
                     userInfo.username = data.username;
+                    userInfo.role = data.role;
                     // userInfo.menu = data.pageStr;
 
                     // 保存密码
@@ -67,7 +68,7 @@ async function toLogin() {
                     user.initUser(userInfo);
                     setToken(tokenStr);
                     $router.push('/layout');
-                    
+
                     ElMessage({
                         message: '登陆成功！',
                         type: 'success'
@@ -113,7 +114,7 @@ onMounted(() => {
     height: 100vh;
     background: url(/src/assets/img/bg.jpg) center center no-repeat;
     background-size: 100% auto;
-    
+
 
     .login-box {
         // 水平垂直居中
@@ -138,12 +139,14 @@ onMounted(() => {
             row-gap: 5%;
         }
 
-        .el-input__wrapper{
+        .el-input__wrapper {
             background-color: transparent;
-            svg{
+
+            svg {
                 color: #fff;
             }
-            input{
+
+            input {
                 color: #fff;
             }
         }
@@ -154,13 +157,13 @@ onMounted(() => {
             text-align: center;
         }
     }
-    
-    .el-button{
+
+    .el-button {
         background-color: transparent;
         border: 2px #fff solid;
     }
 
-    .el-checkbox__label{
+    .el-checkbox__label {
         color: #fff;
     }
 }
