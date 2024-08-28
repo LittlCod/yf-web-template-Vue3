@@ -22,6 +22,10 @@
 
 // 切换主题控制的样式
 @include themify($themes){
+    .el-switch__label:not(.is-active){
+        color: themed('basic-textcolor') !important;
+    }
+
     .el-descriptions__label{
         color: themed('el-descriptions-label') !important; 
     }

@@ -46,6 +46,7 @@
     }
 
     .yf-btn-primary{
+        border: none;
         @include button('primary');
     }
 

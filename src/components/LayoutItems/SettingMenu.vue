@@ -22,11 +22,13 @@
 				</div>
 			</div>
 		</el-card>
-		{{ userStore }}
 
-		<el-button class="yf-btn-primary" @click="mainStore.changeTheme('light')">light</el-button>
-		<button class="yf-btn-primary">主要</button>
-		<el-button class="yf-btn-primary" @click="mainStore.changeTheme('dark')">dark</el-button>
+		<el-divider />
+
+		<div class="flex ai-c jc-se">
+			<div class="label">深色模式</div>
+			<el-switch v-model="mainStore.theme" size="large" active-text="深色模式" inactive-text="浅色模式" active-value="dark" inactive-value="light" />
+		</div>
 	</div>
 </template>
 
@@ -58,15 +60,21 @@ function logout() {
 <style scoped lang='scss'>
 .setting-menu {
 	display: grid;
+	justify-items: stretch;
 	grid-template-columns: 1fr;
-	gap: 15px;
+	gap: 0px;
 
 	.card-content {
 		display: grid;
 		grid-template-columns: 50px 1fr;
 		grid-template-rows: 1fr 20px;
+		align-items: center;
 		gap: 15px;
 		align-items: center;
+	}
+
+	:deep(.el-descriptions__cell){
+		padding-bottom: 0 !important;
 	}
 }
 </style>
