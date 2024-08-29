@@ -7,7 +7,7 @@
 						<img src="@/assets/vue.svg" alt="logo" />模板项目页面
 					</div>
 					<!-- 顶部菜单 -->
-					<el-menu :default-active="activeIndex" class="el-menu-top yf-topmenu" mode="horizontal"
+					<el-menu :default-active="activeIndex" class="el-menu-top" mode="horizontal"
 						@select="handleSelect">
 						<el-menu-item index="1">Processing Center</el-menu-item>
 						<el-sub-menu index="2">
@@ -39,7 +39,22 @@
 					<!-- 顶部菜单结束 -->
 				</el-header>
 				<el-container style="height: 100%;" class="yf-bg-container yf-textcolor">
-					<el-aside width="200px">Aside</el-aside>
+					<el-aside width="200px">
+						<el-menu :collapse="mainStore.leftMenuCollapse" :unique-opened="true" active-color="#3471FF" router>
+							<!-- 菜单组件，递归 -->
+							<NavMenu :menus="userStore.menu"></NavMenu>
+
+							<!-- 收起 -->
+							<el-menu-item @click="mainStore.leftMenuCollapse = !mainStore.leftMenuCollapse" index>
+								<el-icon>
+									<component :is="'Expand'" v-if="mainStore.leftMenuCollapse"></component>
+									<component :is="'Fold'" v-else></component>
+								</el-icon>
+								<span>收起导航</span>
+							</el-menu-item>
+
+						</el-menu>
+					</el-aside>
 					<el-container>
 						<el-main>
 							<router-view></router-view>
@@ -69,6 +84,12 @@ import {
 } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import SettingMenu from "@/components/LayoutItems/SettingMenu.vue";
+import NavMenu from "../components/LayoutItems/NavMenu.vue";
+import { useMain } from '@/store/modules/main.js';
+import { useUser } from '@/store/modules/user.js';
+
+const mainStore = useMain();
+const userStore = useUser();
 
 const activeIndex = ref("1");
 const activeIndex2 = ref("1");
@@ -80,7 +101,8 @@ const handleSelect = (key, keyPath) => {
 
 <style scoped lang='scss'>
 .el-menu-top {
-	width: 100%;
+	// 宽度自动充满剩余的空间
+	flex-grow: 1;
 	height: 65px;
 	border-bottom: 0;
 }
@@ -111,8 +133,8 @@ const handleSelect = (key, keyPath) => {
 		justify-content: center;
 		font-size: 16px;
 		line-height: 64px;
-		color: #409eff;
 		width: 200px;
+		padding: 0 10px;
 		box-sizing: border-box;
 
 		img {

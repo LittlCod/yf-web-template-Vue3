@@ -33,12 +33,6 @@
         box-shadow: themed('card-box-shadow');
     }
 
-    .yf-topmenu{
-        li,.el-sub-menu__title{
-            color: themed('basic-textcolor') !important;
-        }
-    }
-
     // 第二种是使用mixin添加的分类，以便使用变量来添加属性
     // @include 分类('对应的变量名')
     .yf-btn{

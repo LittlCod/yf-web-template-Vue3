@@ -2,8 +2,9 @@ import asyncRoutes from '@/router/asyncRoutes.js';
 
 function handleArr(arr, menu) {
     let newArr = [];
+    menu.unshift({ id: 0, name: 'layout' });
     arr.forEach(item => {
-        if (menu.findIndex(mItem => mItem.name === item.meta.title) !== -1) {
+        if (menu.findIndex(mItem => mItem.name === item.name) !== -1) {
             if (!item.children) {
                 newArr.push(item);
             } else {

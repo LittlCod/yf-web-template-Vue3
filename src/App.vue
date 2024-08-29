@@ -17,7 +17,6 @@ const mainStore = useMain();
 const locale = zhCn;
 
 let themeClass = computed(() => {
-    console.log(mainStore.theme);
     return `theme-${mainStore.theme}`;
 });
 </script>

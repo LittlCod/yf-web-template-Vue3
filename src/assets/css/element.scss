@@ -10,7 +10,7 @@
     // --el-color-primary-dark-2:  #1E7E34 !important;
     // --el-color-primary-light-3: #28a746cf !important;
     --el-menu-bg-color: unset !important;
-    --el-menu-text-color: #e1e1e1 !important;
+    --el-menu-text-color: themed('basic-textcolor') !important;
     --el-menu-active-color: #ffcf4c !important;
     --el-menu-hover-bg-color: #00000066 !important;
     --el-border-radius-base: 0 !important;

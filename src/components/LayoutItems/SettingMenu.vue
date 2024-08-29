@@ -25,6 +25,7 @@
 
 		<el-divider />
 
+		<!-- 设置选项 -->
 		<div class="flex ai-c jc-se">
 			<div class="label">深色模式</div>
 			<el-switch v-model="mainStore.theme" size="large" active-text="深色模式" inactive-text="浅色模式" active-value="dark" inactive-value="light" />

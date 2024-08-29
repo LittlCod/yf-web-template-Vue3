@@ -36,7 +36,8 @@ export function getPassword() {
 }
 
 export function setPassword(data) {
-  return Cookies.set(PassWordKey, data);
+  // cookie保存一年，根据需求修改
+  return Cookies.set(PassWordKey, data, { expires: 365 });
 }
 
 export function removePassword() {
