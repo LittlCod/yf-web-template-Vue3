@@ -50,7 +50,12 @@
         {
             "id": 10,
             "parent": 0,
-            "name": "menu4"
+            "name": "table"
+        },
+        {
+            "id": 11,
+            "parent": 10,
+            "name": "table-basic"
         }
     ]
 }

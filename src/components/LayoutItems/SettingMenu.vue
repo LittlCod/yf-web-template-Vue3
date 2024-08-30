@@ -26,9 +26,16 @@
 		<el-divider />
 
 		<!-- 设置选项 -->
-		<div class="flex ai-c jc-se">
+		<div class="grid gap-5 ai-c ji-c setting">
 			<div class="label">深色模式</div>
-			<el-switch v-model="mainStore.theme" size="large" active-text="深色模式" inactive-text="浅色模式" active-value="dark" inactive-value="light" />
+			<el-switch v-model="mainStore.theme" size="large" active-text="深色模式" inactive-text="浅色模式"
+				active-value="dark" inactive-value="light" />
+			<div class="label">菜单模式</div>
+			<el-select v-model="mainStore.menuType" style="width: 200px">
+				<el-option label="左侧菜单模式" value="left" />
+				<el-option label="顶部菜单模式" value="top" />
+				<el-option label="顶部+左侧菜单模式" value="all" />
+			</el-select>
 		</div>
 	</div>
 </template>
@@ -74,8 +81,13 @@ function logout() {
 		align-items: center;
 	}
 
-	:deep(.el-descriptions__cell){
+	:deep(.el-descriptions__cell) {
 		padding-bottom: 0 !important;
 	}
+
+	.setting {
+		grid-template-columns: 100px auto;
+	}
+
 }
 </style>

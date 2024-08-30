@@ -19,6 +19,7 @@
             </el-icon>
             <template #title>
                 <span>{{ item.name }}</span>
+                <!-- <span>{{ baseUrl + item.path }}</span> -->
             </template>
         </el-menu-item>
  

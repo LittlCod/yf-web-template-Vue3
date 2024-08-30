@@ -1,35 +1,22 @@
 <template>
 	<div class="layout">
 		<div class="common-layout">
+			<!-- {{ baseUrl }} -->
 			<el-container class="flex-c" style="height: 100vh;">
 				<el-header class="header yf-bg-container yf-textcolor">
 					<div class="logo yf-textcolor" :class="mainStore.leftMenuCollapse ? 'collapse' : ''">
 						<img src="@/assets/vue.svg" alt="logo" />
 						<span v-show="!mainStore.leftMenuCollapse">模板项目页面</span>
 					</div>
-					<el-icon class="collapse-icon pointer"
+					<el-icon v-if="mainStore.menuType !== 'top'" class="collapse-icon pointer"
 						@click="mainStore.leftMenuCollapse = !mainStore.leftMenuCollapse">
 						<component :is="'Expand'" v-if="mainStore.leftMenuCollapse"></component>
 						<component :is="'Fold'" v-else></component>
 					</el-icon>
 					<!-- 顶部菜单 -->
-					<el-menu :default-active="activeIndex" class="el-menu-top" mode="horizontal" @select="handleSelect">
-						<el-menu-item index="1">Processing Center</el-menu-item>
-						<el-sub-menu index="2">
-							<template #title>Workspace</template>
-							<el-menu-item index="2-1">item one</el-menu-item>
-							<el-menu-item index="2-2">item two</el-menu-item>
-							<el-menu-item index="2-3">item three</el-menu-item>
-							<el-sub-menu index="2-4">
-								<template #title>item four</template>
-								<el-menu-item index="2-4-1">item one</el-menu-item>
-								<el-menu-item index="2-4-2">item two</el-menu-item>
-								<el-menu-item index="2-4-3">item three</el-menu-item>
-							</el-sub-menu>
-						</el-sub-menu>
-						<el-menu-item index="3" disabled>Info</el-menu-item>
-						<el-menu-item index="4">Orders</el-menu-item>
-						<!-- <TopMenu class="right-menu"></TopMenu> -->
+					<el-menu :default-active="mainStore.menuType === 'all' ? baseUrl : route.path" class="el-menu-top" mode="horizontal" @select="handleSelect" router>
+						<!-- 菜单组件，递归 -->
+						<NavMenu :menus="topMenu"></NavMenu>
 					</el-menu>
 
 					<!-- 设置 -->
@@ -44,11 +31,17 @@
 					<!-- 顶部菜单结束 -->
 				</el-header>
 				<el-container class="page yf-bg-container yf-textcolor">
-					<el-aside class="aside" :class="mainStore.leftMenuCollapse ? 'collapse' : ''">
-						<el-menu class="left-menu" style="height: 100%;" :collapse="mainStore.leftMenuCollapse"
-							:unique-opened="true" active-color="#3471FF" router>
+					<el-aside v-if="mainStore.menuType !== 'top'" class="aside"
+						:class="mainStore.leftMenuCollapse ? 'collapse' : ''">
+						<el-menu 
+						class="left-menu" 
+						style="height: 100%;" 
+						:collapse="mainStore.leftMenuCollapse"
+						:default-active="route.path"
+						:unique-opened="true" active-color="#3471FF" router>
 							<!-- 菜单组件，递归 -->
-							<NavMenu :menus="userStore.menu"></NavMenu>
+							<NavMenu :menus="leftMenu" :baseUrl="mainStore.menuType === 'all' ? baseUrl + '/' : ''">
+							</NavMenu>
 						</el-menu>
 					</el-aside>
 					<el-container>
@@ -56,7 +49,7 @@
 							<router-view></router-view>
 						</el-main>
 						<el-footer class="footer">
-							Copyright © 2023 ccai.com.cn All Rights Reserved.  豫ICP备2023002658号-1  豫公网安备 41019702003271号
+							Copyright © 2023 ccai.com.cn All Rights Reserved. 豫ICP备2023002658号-1 豫公网安备 41019702003271号
 						</el-footer>
 					</el-container>
 				</el-container>
@@ -88,12 +81,63 @@ import { useUser } from '@/store/modules/user.js';
 
 const mainStore = useMain();
 const userStore = useUser();
+const route = useRoute();
 
 const activeIndex = ref("1");
 const activeIndex2 = ref("1");
+
+// 右侧抽屉开关 - 主设置
 const showSetting = ref(false);
+
+// 基本baseUrl，作为顶部菜单的active与左侧菜单的匹配项
+const baseUrl = computed(() => {
+	return route.matched[0].path;
+});
+
+// 菜单模式修改 - 左侧菜单
+let leftMenu = computed(() => {
+	let menu = userStore.menu;
+	switch (mainStore.menuType) {
+		case "top":
+			menu = [];
+			break;
+		case "all":
+			const currentMenu = menu.find(item => item.path === baseUrl.value);
+			console.log(currentMenu);
+			if (currentMenu && currentMenu.children)
+				menu = currentMenu.children;
+			else
+				menu = [];
+			break;
+	};
+	return menu;
+});
+
+// 菜单模式修改 - 顶部菜单
+const topMenu = computed(() => {
+	let menu = userStore.menu;
+	switch (mainStore.menuType) {
+		case "left":
+			menu = [];
+			break;
+		case "all":
+			menu = menu.map(item => {
+				return {
+					...item,
+					children: null
+				}
+			});
+			// console.log(menu);
+			break;
+	};
+	return menu;
+});
+
+// 顶部菜单点击事件
 const handleSelect = (key, keyPath) => {
-	console.log(key, keyPath);
+	if(mainStore.menuType === 'all'){
+		// console.log(key, keyPath);
+	}
 };
 </script>
 
@@ -149,8 +193,6 @@ const handleSelect = (key, keyPath) => {
 .page {
 	flex-grow: 1;
 	overflow: auto;
-
-	.aside {}
 }
 
 .left-menu {

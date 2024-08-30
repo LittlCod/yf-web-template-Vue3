@@ -62,11 +62,19 @@ const asyncRoutes = [
         ]
     },
     {
-        path: '/menu',
-        name: 'menu4',
+        path: '/table',
+        name: 'table',
         component: () => import("@/views/LayoutView.vue"),
-        meta: { title: '菜单展示', icon: 'Tickets' },
-        redirect: '/menu/menu1',
+        meta: { title: '表格展示', icon: 'Tickets' },
+        redirect: '/table/basic',
+        children: [
+            {
+                path: 'basic',
+                name: 'table-basic',
+                meta: { title: '基本表格', icon: 'Tickets' },
+                component: () => import("@/views/Table/BasicTable.vue"),
+            },
+        ],
     },
 
 ];

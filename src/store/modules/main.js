@@ -5,6 +5,7 @@ export const useMain = defineStore('main', {
     state: () => {
         return {
             theme: 'light',
+            menuType: 'all',
             leftMenuCollapse: false,
             refresh: true
         }
