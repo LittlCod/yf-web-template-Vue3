@@ -35,7 +35,6 @@ router.beforeEach(async (to, from, next) => {
     }
     if (getToken()) {
         await getMenu().then(menu => {
-            // const testMenu = [{ name: '业务管理' }, { name: '经营管理' }, { name: '商品销售汇总'}, {name: '门店管理'}, { name: '配送跟踪' }, { name: '会话管理' } ];
             // const newMenu = handleMenu(testMenu);
             const newMenu = handleMenu(menu.data);
             useUser(pinia).setMenu(newMenu);

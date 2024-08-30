@@ -61,6 +61,14 @@ const asyncRoutes = [
             },
         ]
     },
+    {
+        path: '/menu',
+        name: 'menu4',
+        component: () => import("@/views/LayoutView.vue"),
+        meta: { title: '菜单展示', icon: 'Tickets' },
+        redirect: '/menu/menu1',
+    },
+
 ];
 
 export default asyncRoutes;
