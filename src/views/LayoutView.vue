@@ -1,7 +1,6 @@
 <template>
 	<div class="layout">
 		<div class="common-layout">
-			<!-- {{ baseUrl }} -->
 			<el-container class="flex-c" style="height: 100vh;">
 				<el-header class="header yf-bg-container yf-textcolor">
 					<div class="logo yf-textcolor" :class="mainStore.leftMenuCollapse ? 'collapse' : ''">
@@ -14,11 +13,19 @@
 						<component :is="'Fold'" v-else></component>
 					</el-icon>
 					<!-- 顶部菜单 -->
-					<el-menu :default-active="mainStore.menuType === 'all' ? baseUrl : route.path" class="el-menu-top" mode="horizontal" @select="handleSelect" router>
+					<el-menu v-if="mainStore.menuType !== 'left'"
+						:default-active="mainStore.menuType === 'all' ? baseUrl : route.path" class="el-menu-top"
+						mode="horizontal" @select="handleSelect" router>
 						<!-- 菜单组件，递归 -->
 						<NavMenu :menus="topMenu"></NavMenu>
 					</el-menu>
-
+					<!-- 顶部菜单不展示时，展示面包屑导航 -->
+					<el-breadcrumb class="el-menu-top" separator="/" v-else>
+						<el-breadcrumb-item :to="{ path: '/' }">homepage</el-breadcrumb-item>
+						<el-breadcrumb-item v-for="item in route.matched.filter(i => i.meta.title !== '首页')" :key="item.name">
+							{{ item.meta.title }}
+						</el-breadcrumb-item>
+					</el-breadcrumb>
 					<!-- 设置 -->
 					<div class="right">
 						<el-icon class="pointer">
@@ -33,12 +40,8 @@
 				<el-container class="page yf-bg-container yf-textcolor">
 					<el-aside v-if="mainStore.menuType !== 'top'" class="aside"
 						:class="mainStore.leftMenuCollapse ? 'collapse' : ''">
-						<el-menu 
-						class="left-menu" 
-						style="height: 100%;" 
-						:collapse="mainStore.leftMenuCollapse"
-						:default-active="route.path"
-						:unique-opened="true" active-color="#3471FF" router>
+						<el-menu class="left-menu" style="height: 100%;" :collapse="mainStore.leftMenuCollapse"
+							:default-active="route.path" :unique-opened="true" active-color="#3471FF" router>
 							<!-- 菜单组件，递归 -->
 							<NavMenu :menus="leftMenu" :baseUrl="mainStore.menuType === 'all' ? baseUrl + '/' : ''">
 							</NavMenu>
@@ -135,7 +138,7 @@ const topMenu = computed(() => {
 
 // 顶部菜单点击事件
 const handleSelect = (key, keyPath) => {
-	if(mainStore.menuType === 'all'){
+	if (mainStore.menuType === 'all') {
 		// console.log(key, keyPath);
 	}
 };
@@ -146,6 +149,7 @@ const handleSelect = (key, keyPath) => {
 	// 宽度自动充满剩余的空间
 	flex-grow: 1;
 	height: 65px;
+	line-height: 65px;
 	border-bottom: 0;
 }
 
