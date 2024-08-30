@@ -17,7 +17,7 @@
 				</div>
 				<div class="name">{{ userStore.name }}</div>
 				<div class="grid c-2">
-					<el-button>修改密码</el-button>
+					<el-button @click="showChangePassword = true">修改密码</el-button>
 					<el-button @click="logout">退出登录</el-button>
 				</div>
 			</div>
@@ -37,6 +37,21 @@
 				<el-option label="顶部+左侧菜单模式" value="all" />
 			</el-select>
 		</div>
+
+		<el-dialog v-model="showChangePassword" title="修改密码" width="400">
+			<el-form ref="passwordFormRef" :rules="passwordRules" :model="passwordForm" label-width="120px">
+				<el-form-item label="输入原密码" prop="originalPassword">
+					<el-input type="password" v-model="passwordForm.originalPassword" autocomplete="off" />
+				</el-form-item>
+				<el-form-item label="输入修改密码" prop="password">
+					<el-input type="password" v-model="passwordForm.password" autocomplete="off" />
+				</el-form-item>
+				<el-form-item label="确认修改密码" prop="confirmPassword">
+					<el-input type="password" v-model="passwordForm.confirmPassword" autocomplete="off" />
+				</el-form-item>
+				<el-button type="primary" @click="changePasswordFn(passwordForm, passwordFormRef)">确认修改</el-button>
+			</el-form>
+		</el-dialog>
 	</div>
 </template>
 
@@ -55,14 +70,62 @@ import { useRoute, useRouter } from "vue-router";
 import { useMain } from "@/store/modules/main.js";
 import { useUser } from "@/store/modules/user.js";
 import { removeToken } from "@/utils/auth.js";
+import { ElMessage } from 'element-plus';
+import { changePassword } from "@/api/login.js";
 const mainStore = useMain();
 const userStore = useUser();
+const passwordFormRef = ref();
+
 
 // 退出登录
 function logout() {
 	removeToken();
 	location.reload(); // 为了重新实例化vue-router对象 避免bug
 }
+
+// 修改密码
+const showChangePassword = ref(false);
+const passwordForm = ref({
+	id: userStore.id,
+	originalPassword: "",
+	password: "",
+	confirmPassword: "",
+});
+const passwordRules = {
+	originalPassword: [
+		{ required: true, message: "请输入原密码", trigger: "blur" },
+	],
+	password: [
+		{ required: true, message: "请输入新密码", trigger: "blur" },
+	],
+	confirmPassword: [
+		{ required: true, message: "请确认新密码", trigger: "blur" },
+		{
+			validator: (_, value) => {
+				if (value === "") {
+					return Promise.reject("请确认新密码");
+				} else if (value!== passwordForm.value.password) {
+					return Promise.reject("两次输入的密码不一致");
+				}
+				return Promise.resolve();
+			},
+		},
+	],
+}
+const changePasswordFn = async (data, el) => {
+	if(!el) return;
+	await el.validate((valid) => {
+		if (valid) {
+			changePassword(data).then(res => {
+				if (res.code === 0) {
+					ElMessage.success("修改成功，请重新登录");
+					showChangePassword.value = false;
+					logout();
+				}
+			});
+		}
+	});
+};
 </script>
 
 <style scoped lang='scss'>

@@ -1,13 +1,12 @@
 <template>
     <!-- 菜单（有子级菜单）-->
     <template v-for="(item) in menus">
- 
         <el-sub-menu :index="item.name + ''" v-if="item.children && item.children.length > 0" :key="item.name">
             <template #title>
                 <el-icon>
                     <component :is="item.meta.icon"></component>
                 </el-icon>
-                <span>{{ item.name }}</span>
+                <span>{{ item.meta.title }}</span>
             </template>
             <NavMenu :menus="item.children" :baseUrl="`${baseUrl}${item.path}/`">
             </NavMenu>
@@ -18,7 +17,7 @@
                 <component :is="item.meta.icon"></component>
             </el-icon>
             <template #title>
-                <span>{{ item.name }}</span>
+                <span>{{ item.meta.title }}</span>
                 <!-- <span>{{ baseUrl + item.path }}</span> -->
             </template>
         </el-menu-item>
