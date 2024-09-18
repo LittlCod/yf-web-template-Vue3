@@ -1,0 +1,15 @@
+{
+    "code": 0,
+    "message": "成功",
+    "data": [
+        {
+            "id": 1,
+            "name": "张三",
+            "age": 18,
+            "sex": "男",
+            "address": "北京",
+            "phone": "13800138000",
+            "email": "EMAIL"
+        }
+    ]
+}

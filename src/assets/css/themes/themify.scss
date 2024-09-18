@@ -18,15 +18,15 @@
 @include themify($themes){
     /* 在这里添加各种类，可以使用两种方式添加 */
     // 第一种是直接添加，属性: themed('对应的变量名')
-    .yf-bg-container{
+    .lc-bg-container{
         background-color: themed('background') !important;
     }
 
-    .yf-textcolor{
+    .lc-textcolor{
         color: themed('basic-textcolor') !important;
     }
 
-    .yf-card{
+    .lc-card{
         background-color: themed('background2');
         border: 0;
         color: themed('basic-textcolor');
@@ -35,16 +35,16 @@
 
     // 第二种是使用mixin添加的分类，以便使用变量来添加属性
     // @include 分类('对应的变量名')
-    .yf-btn{
+    .lc-btn{
         @include button;
     }
 
-    .yf-btn-primary{
+    .lc-btn-primary{
         border: none;
         @include button('primary');
     }
 
-    .yf-btn-info{
+    .lc-btn-info{
         @include button('info');
     }
 }

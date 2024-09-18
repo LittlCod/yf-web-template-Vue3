@@ -2,8 +2,8 @@
 	<div class="layout">
 		<div class="common-layout">
 			<el-container class="flex-c" style="height: 100vh;">
-				<el-header class="header yf-bg-container yf-textcolor">
-					<div class="logo yf-textcolor" :class="mainStore.leftMenuCollapse ? 'collapse' : ''">
+				<el-header class="header lc-bg-container lc-textcolor">
+					<div class="logo lc-textcolor" :class="mainStore.leftMenuCollapse ? 'collapse' : ''">
 						<img src="@/assets/vue.svg" alt="logo" />
 						<span v-show="!mainStore.leftMenuCollapse">模板项目页面</span>
 					</div>
@@ -37,7 +37,7 @@
 					</div>
 					<!-- 顶部菜单结束 -->
 				</el-header>
-				<el-container class="page yf-bg-container yf-textcolor">
+				<el-container class="page lc-bg-container lc-textcolor">
 					<el-aside v-if="mainStore.menuType !== 'top'" class="aside"
 						:class="mainStore.leftMenuCollapse ? 'collapse' : ''">
 						<el-menu class="left-menu" style="height: 100%;" :collapse="mainStore.leftMenuCollapse"
@@ -59,7 +59,7 @@
 			</el-container>
 		</div>
 
-		<el-drawer class="yf-bg-container yf-textcolor" v-model="showSetting" title="系统设置">
+		<el-drawer class="lc-bg-container lc-textcolor" v-model="showSetting" title="系统设置">
 			<SettingMenu></SettingMenu>
 		</el-drawer>
 	</div>

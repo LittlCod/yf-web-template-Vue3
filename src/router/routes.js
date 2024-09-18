@@ -27,11 +27,9 @@ const routes = [
     },
 
     {
-        path: '/404',
-        meta: {
-            title: '404',
-        },
-        component: () => import('@/views/404.vue')
+        name: '404',
+        path: '/:catchAll(.*)',
+        component: () => import(`@/views/404.vue`)
     }
 
 ];

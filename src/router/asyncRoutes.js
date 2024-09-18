@@ -10,7 +10,7 @@ const asyncRoutes = [
                 path: 'menu1',
                 name: 'menu1',
                 meta: { title: '菜单展示1', icon: 'Pear' },
-                component: () => import("@/views/HomeView.vue"),
+                component: () => import("@/views/Menu/MenuView.vue"),
             },
             {
                 path:'menu2',
@@ -21,13 +21,13 @@ const asyncRoutes = [
                         path:'menu2-1',
                         name:'menu2-1',
                         meta: { title: '菜单展示2-1', icon: 'Bowl' },
-                        component: () => import("@/views/HomeView.vue"),
+                        component: () => import("@/views/Menu/MenuView.vue"),
                     },
                     {
                         path:'menu2-2',
                         name:'menu2-2',
                         meta: { title: '菜单展示2-2', icon: 'Apple' },
-                        component: () => import("@/views/HomeView.vue"),
+                        component: () => import("@/views/Menu/MenuView.vue"),
                     },
                 ]
             },
@@ -35,25 +35,25 @@ const asyncRoutes = [
                 path:'menu3',
                 name:'menu3',
                 meta: { title: '菜单展示3', icon: 'Dish' },
-                component: () => import("@/views/HomeView.vue"),
+                component: () => import("@/views/Menu/MenuView.vue"),
                 children: [
                     {
                         path:'menu3-1',
                         name:'menu3-1',
                         meta: { title: '菜单展示3-1', icon: 'Bowl' },
-                        component: () => import("@/views/HomeView.vue"),
+                        component: () => import("@/views/Menu/MenuView.vue"),
                     },
                     {
                         path:'menu3-2',
                         name:'menu3-2',
                         meta: { title: '菜单展示3-2', icon: 'Apple' },
-                        component: () => import("@/views/HomeView.vue"),
+                        component: () => import("@/views/Menu/MenuView.vue"),
                         children: [
                             {
                                 path:'menu3-2-1',
                                 name:'menu3-2-1',
                                 meta: { title: '菜单展示3-2-1', icon: 'Bowl' },
-                                component: () => import("@/views/HomeView.vue"),
+                                component: () => import("@/views/Menu/MenuView.vue"),
                             },
                         ]
                     },

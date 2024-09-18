@@ -1,4 +1,4 @@
-# yf-web-template-Vue3
+# lc-web-template-Vue3
 
 ### 豫丰vue3前端项目模板，后端数据由json文件模拟
 
@@ -22,9 +22,9 @@
 
 ## 基本功能组件
 
-### 单个表单组件 yf-form-item
+### 单个表单组件 lc-form-item
 
-### 表格组件 yf-table
+### 表格组件 lc-table
 
 ## 主要页面
 

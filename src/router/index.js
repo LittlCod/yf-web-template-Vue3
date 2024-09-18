@@ -42,7 +42,7 @@ router.beforeEach(async (to, from, next) => {
                 router.addRoute(item);
             });
             // 添加404页面
-            router.addRoute({ path: '/:pathMatch(.*)*', redirect: '/404' });
+            // router.addRoute({ path: '/:pathMatch(.*)*', redirect: '/404' });
         });
         if (to.path === '/login') {
             appFlag ? next({ path: '/' }) : next({ path: '/app' });

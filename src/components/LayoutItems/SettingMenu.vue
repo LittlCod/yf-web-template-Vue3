@@ -2,7 +2,7 @@
 	<div class="setting-menu">
 		<!-- 系统设置：用户名、修改密码、主题、菜单风格 -->
 		<!-- 用户界面 -->
-		<el-card class="yf-card">
+		<el-card class="lc-card">
 			<div class="card-content">
 				<el-avatar :size="50" src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png" />
 				<div class="user-info">
